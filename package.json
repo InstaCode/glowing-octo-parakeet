@@ -1,15 +1,14 @@
 {
-  "name": "awesome-nestjs-boilerplate",
+  "name": "automationu-nestjs",
   "version": "9.0.0",
   "description": "Awesome NestJS Boilerplate, Typescript, Postgres, TypeORM",
   "author": "Narek Hakobyan <narek.hakobyan.07@gmail.com>",
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build:prod": "tsc -p tsconfig.build.json",
+    "build:prod": "nx exec -- tsc -p tsconfig.build.json",
     "postbuild:prod": "copyfiles --up 1 src/**/*.json dist",
     "start:hmr": "node dist/main.hmr.ts",
-    "start:dev": "ts-node src/main.ts",
     "start:prod": "node dist/main.js",
     "typeorm": "typeorm-ts-node-esm",
     "migration:generate": "yarn run typeorm migration:generate -d ormconfig",
@@ -20,20 +19,18 @@
     "watch:dev": "ts-node-dev src/main.ts",
     "debug:dev": "cross-env TS_NODE_CACHE=false ts-node-dev --inspect --ignore '/^src/.*\\.spec\\.ts$/' src/main.ts",
     "webpack": "webpack --config webpack.config.js --progress",
-    "lint": "eslint . --ext .ts",
+    "lint": "nx lint",
     "lint:fix": "eslint --fix . --ext .ts",
-    "test": "NODE_ENV=test jest",
-    "test:watch": "NODE_ENV=test jest --watch",
-    "test:cov": "NODE_ENV=test jest --coverage",
-    "test:debug": "NODE_ENV=test node --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test": "nx test",
+    "test:debug": "nx exec -- NODE_ENV=test node --inspect-brk -r ts-node/register node_modules/.bin/jest --runInBand",
     "copy:lib": "cpx 'src/lib/**/{files,workspace}/**/*.*' dist/lib && cpx 'src/lib/**/{files,workspace}/**/.!(gitignore)' dist/lib",
-    "test:e2e": "NODE_ENV=test jest --config ./test/jest-e2e.json",
     "docs:dev": "vuepress dev -p 7070",
-    "docs:build": "DEPLOY_ENV=gh-pages vuepress build",
+    "docs:build": "nx exec -- DEPLOY_ENV=gh-pages vuepress build",
     "docs:deploy": "yarn docs:build && gh-pages -d .vuepress/dist",
     "prepare": "husky install",
     "prerelease": "yarn docs:deploy",
-    "release": "release-it"
+    "release": "release-it",
+    "e2e": "nx e2e"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.294.0",
@@ -124,7 +121,10 @@
     "vuepress": "^2.0.0-beta.61",
     "webpack": "^5.76.2",
     "webpack-cli": "^5.0.1",
-    "webpack-node-externals": "^3.0.0"
+    "webpack-node-externals": "^3.0.0",
+    "nx": "16.3.2",
+    "@nx/nest": "16.3.2",
+    "@nx/jest": "16.3.2"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -139,5 +139,29 @@
     },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "nx": {
+    "targets": {
+      "build:prod": {
+        "outputs": [
+          "{projectRoot}/dist"
+        ]
+      },
+      "test:debug": {
+        "outputs": [
+          "{projectRoot}/coverage"
+        ]
+      },
+      "test:e2e": {
+        "outputs": [
+          "{projectRoot}/coverage"
+        ]
+      },
+      "docs:build": {
+        "outputs": [
+          "{projectRoot}/dist"
+        ]
+      }
+    }
   }
 }
