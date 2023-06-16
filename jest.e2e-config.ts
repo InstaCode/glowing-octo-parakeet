@@ -8,7 +8,7 @@ export default {
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
   },
-  "displayName": "awesome-nestjs-boilerplate-e2e",
+  "displayName": "automationu-nestjs-e2e",
   "testMatch": [
     "<rootDir>/test/**/?(*.)+(e2e-spec|e2e-test).[jt]s?(x)"
   ],

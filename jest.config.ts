@@ -7,9 +7,9 @@ export default {
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
   },
-  "coverageDirectory": "./coverage/awesome-nestjs-boilerplate",
+  "coverageDirectory": "./coverage/automationu-nestjs",
   "testEnvironment": "node",
-  "displayName": "awesome-nestjs-boilerplate",
+  "displayName": "automationu-nestjs",
   "testMatch": [
     "<rootDir>/src/**/*(*.)@(spec|test).[jt]s?(x)"
   ],

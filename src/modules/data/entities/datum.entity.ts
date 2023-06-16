@@ -1,5 +1,6 @@
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
+@Entity('course-data-clean')
 export class Datum {
   @PrimaryGeneratedColumn()
   id: number;

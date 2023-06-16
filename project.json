@@ -1,5 +1,5 @@
 {
-  "name": "awesome-nestjs-boilerplate",
+  "name": "automationu-nestjs",
   "root": ".",
   "sourceRoot": "src",
   "projectType": "application",
@@ -7,7 +7,7 @@
     "serve": {
       "executor": "@nx/js:node",
       "options": {
-        "buildTarget": "awesome-nestjs-boilerplate:build"
+        "buildTarget": "automationu-nestjs:build"
       },
       "configurations": {
         "debug": {
@@ -21,7 +21,7 @@
         "{options.outputPath}"
       ],
       "options": {
-        "outputPath": "dist/awesome-nestjs-boilerplate",
+        "outputPath": "dist/automationu-nestjs",
         "main": "src/main",
         "tsConfig": "tsconfig.build.json"
       }
@@ -41,7 +41,7 @@
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": [
-        "{workspaceRoot}/coverage/awesome-nestjs-boilerplate"
+        "{workspaceRoot}/coverage/automationu-nestjs"
       ],
       "options": {
         "passWithNoTests": true,
