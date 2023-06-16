@@ -14,10 +14,12 @@ import { PostModule } from './modules/post/post.module';
 import { UserModule } from './modules/user/user.module';
 import { ApiConfigService } from './shared/services/api-config.service';
 import { SharedModule } from './shared/shared.module';
+import { CoursesModule } from './modules/courses/courses.module';
 
 @Module({
   imports: [
     AuthModule,
+    CoursesModule,
     UserModule,
     PostModule,
     ConfigModule.forRoot({
@@ -33,8 +35,9 @@ import { SharedModule } from './shared/shared.module';
         if (!options) {
           throw new Error('Invalid options passed');
         }
+
         return addTransactionalDataSource(new DataSource(options));
-      }
+      },
     }),
     I18nModule.forRootAsync({
       useFactory: (configService: ApiConfigService) => ({
