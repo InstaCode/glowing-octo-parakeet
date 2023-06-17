@@ -15,7 +15,6 @@ import { UserModule } from './modules/user/user.module';
 import { ApiConfigService } from './shared/services/api-config.service';
 import { SharedModule } from './shared/shared.module';
 import { CoursesModule } from './modules/courses/courses.module';
-import { DataModule } from './modules/data/data.module';
 
 @Module({
   imports: [
@@ -56,7 +55,6 @@ import { DataModule } from './modules/data/data.module';
       inject: [ApiConfigService],
     }),
     HealthCheckerModule,
-    DataModule,
   ],
   providers: [],
 })
