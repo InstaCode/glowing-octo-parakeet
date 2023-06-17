@@ -1,4 +1,5 @@
 import './boilerplate.polyfill';
+import 'reflect-metadata';
 
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
@@ -9,13 +10,13 @@ import { DataSource } from 'typeorm';
 import { addTransactionalDataSource } from 'typeorm-transactional';
 
 import { AuthModule } from './modules/auth/auth.module';
+import { CoursesModule } from './modules/courses/courses.module';
+import { DataModule } from './modules/data/data.module';
 import { HealthCheckerModule } from './modules/health-checker/health-checker.module';
 import { PostModule } from './modules/post/post.module';
 import { UserModule } from './modules/user/user.module';
 import { ApiConfigService } from './shared/services/api-config.service';
 import { SharedModule } from './shared/shared.module';
-import { CoursesModule } from './modules/courses/courses.module';
-import { DataModule } from './modules/data/data.module';
 
 @Module({
   imports: [
@@ -36,8 +37,9 @@ import { DataModule } from './modules/data/data.module';
         if (!options) {
           throw new Error('Invalid options passed');
         }
+        const dataSource = new DataSource(options);
 
-        return addTransactionalDataSource(new DataSource(options));
+        return addTransactionalDataSource(dataSource);
       },
     }),
     I18nModule.forRootAsync({

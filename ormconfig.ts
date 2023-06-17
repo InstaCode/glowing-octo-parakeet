@@ -1,4 +1,5 @@
 import './src/boilerplate.polyfill';
+import 'reflect-metadata';
 
 import * as dotenv from 'dotenv';
 import { DataSource } from 'typeorm';

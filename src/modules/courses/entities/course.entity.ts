@@ -1,9 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity } from 'typeorm';
+
+import { AbstractEntity } from '../../../common/abstract.entity';
 
 @Entity('course')
-export class Course {
-  @PrimaryGeneratedColumn()
-  id: number;
+export class Course extends AbstractEntity<Course> {
+  @Column()
+  systemId: number;
 
   @Column()
   subject: string;
@@ -18,41 +20,5 @@ export class Course {
   title: string;
 
   @Column()
-  startDate: Date;
-
-  @Column()
-  endDate: Date;
-
-  @Column()
-  time: string;
-
-  @Column()
   credits: number;
-
-  @Column()
-  status: string;
-
-  @Column()
-  instructor: string;
-
-  @Column()
-  deliveryMethod: string;
-
-  @Column()
-  buildingRoom: string;
-
-  @Column()
-  classSize: number;
-
-  @Column()
-  enrolled: number;
-
-  @Column()
-  tuitionResident: number;
-
-  @Column()
-  tuitionNonResident: number;
-
-  @Column()
-  courseFees: number;
 }

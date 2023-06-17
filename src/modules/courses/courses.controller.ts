@@ -1,16 +1,17 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
 } from '@nestjs/common';
+import { ApiBody, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+
 import { CoursesService } from './courses.service';
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
-import { ApiTags, ApiResponse, ApiParam, ApiBody } from '@nestjs/swagger';
 
 @Controller('courses')
 @ApiTags('Courses')
@@ -34,7 +35,7 @@ export class CoursesController {
   @ApiResponse({ status: 200, description: 'Retrieves a course by ID' })
   @ApiParam({ name: 'id', type: 'string', description: 'Course ID' })
   findOne(@Param('id') id: string) {
-    return this.coursesService.findOne(+id);
+    return this.coursesService.findOne(Number(id));
   }
 
   @Patch(':id')
@@ -42,13 +43,13 @@ export class CoursesController {
   @ApiParam({ name: 'id', type: 'string', description: 'Course ID' })
   @ApiBody({ type: UpdateCourseDto })
   update(@Param('id') id: string, @Body() updateCourseDto: UpdateCourseDto) {
-    return this.coursesService.update(+id, updateCourseDto);
+    return this.coursesService.update(Number(id), updateCourseDto);
   }
 
   @Delete(':id')
   @ApiResponse({ status: 200, description: 'Deletes a course by ID' })
   @ApiParam({ name: 'id', type: 'string', description: 'Course ID' })
   remove(@Param('id') id: string) {
-    return this.coursesService.remove(+id);
+    return this.coursesService.remove(Number(id));
   }
 }

@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-import { DataService } from './data.service';
+
 import { DataController } from './data.controller';
+import { DataService } from './data.service';
 
 @Module({
   controllers: [DataController],
-  providers: [DataService]
+  providers: [DataService],
 })
 export class DataModule {}

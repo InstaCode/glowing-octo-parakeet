@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import type { TypeOrmModuleOptions } from '@nestjs/typeorm';
@@ -105,6 +107,7 @@ export class ApiConfigService {
       migrationsRun: true,
       logging: this.getBoolean('ENABLE_ORM_LOGS'),
       namingStrategy: new SnakeNamingStrategy(),
+      autoLoadEntities: this.getBoolean('AUTO_LOAD_ENTITIES'),
     };
   }
 
