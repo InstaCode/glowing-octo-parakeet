@@ -9,18 +9,18 @@ import { DataSource } from 'typeorm';
 import { addTransactionalDataSource } from 'typeorm-transactional';
 
 import { AuthModule } from './modules/auth/auth.module';
+import { CourseModule } from './modules/course/course.module';
+import { DataModule } from './modules/data/data.module';
 import { HealthCheckerModule } from './modules/health-checker/health-checker.module';
 import { PostModule } from './modules/post/post.module';
 import { UserModule } from './modules/user/user.module';
 import { ApiConfigService } from './shared/services/api-config.service';
 import { SharedModule } from './shared/shared.module';
-import { CoursesModule } from './modules/courses/courses.module';
-import { DataModule } from './modules/data/data.module';
 
 @Module({
   imports: [
     AuthModule,
-    CoursesModule,
+    CourseModule,
     UserModule,
     PostModule,
     ConfigModule.forRoot({
